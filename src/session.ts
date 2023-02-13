@@ -15,7 +15,7 @@ const saltAndHash = (pass: string): string => {
 
 export const authenticate = async (user: string): Promise<boolean> => {
     // bypass authentication if no users have been created
-    if ((await noUsers())) {
+    if ((await noUsers(user))) {
         return Promise.resolve(true);
     }
 

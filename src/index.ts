@@ -7,7 +7,33 @@ import { newUser } from "./new";
 import { readMessages } from "./read";
 import { sendMessage } from "./send";
 
+import log4js from "log4js"
+
 const program = new Command();
+
+
+//configuring log 4 js with two appenders, app logs all infos whiles errors are logged to the log_errors.txt 
+//took inspiration from the example log4js project on github https://github.com/log4js-node/log4js-example
+log4js.configure({
+  appenders: {
+    app:{type:"file",
+      filename:"log.txt"
+    },
+    errorFile:{
+      type:"file",
+      filename:"log_errors.txt"
+    },
+    errors:{
+      type: "logLevelFilter",
+      level:"ERROR",
+      appender:"errorFile"
+    }
+  },
+  categories:{
+    default:{appenders:["app"],level:"debug"},
+    errors:{appenders:["errors"],level:"debug"}
+    }
+});
 
 // connect early so that if the db needs to be created, everything is populated by the time we
 // try to access it. the async system should prevent us from needing to do this, but in
@@ -48,7 +74,7 @@ if (options.new) {
   void (async function () {
     await connect();
   })().then(() => {
-    if (user === "" && !noUsers()) {
+    if (user === "" && !noUsers(user)) {
       console.error("Please specify a user when running in new mode");
     } else {
       newUser(user);

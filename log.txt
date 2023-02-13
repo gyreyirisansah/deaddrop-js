@@ -1,0 +1,14 @@
+[2023-02-12T06:15:22.675] [ERROR] app - READ: User Paul does not exist
+[2023-02-12T06:15:22.676] [ERROR] app - READ: operation failed
+[2023-02-12T06:28:16.862] [ERROR] app - READ: User paul does not exist
+[2023-02-12T06:28:16.864] [ERROR] app - READ: operation failed
+[2023-02-12T06:28:51.889] [ERROR] app - READ: User sansah does not exist
+[2023-02-12T06:28:51.890] [ERROR] app - READ: operation failed
+[2023-02-12T06:29:40.264] [ERROR] app - READ: User sansah does not exist
+[2023-02-12T06:29:40.265] [ERROR] app - READ: operation failed
+[2023-02-12T06:30:22.601] [INFO] app - User paul created successfully
+[2023-02-12T06:30:48.315] [ERROR] app - READ: Authentication for user paul failed.
+[2023-02-12T06:30:48.316] [ERROR] app - READ: operation failed
+[2023-02-12T16:19:24.017] [ERROR] errors - READ: operation failed failed for user Paul Error: Error: User does not exist
+[2023-02-12T16:27:52.832] [ERROR] errors - READ: operation failed failed for user Paul Error: Error: User does not exist
+[2023-02-12T16:29:13.918] [ERROR] errors - READ: operation failed failed for user Paul Error: Error: User does not exist
