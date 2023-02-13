@@ -1,8 +1,7 @@
 import { connect } from "./db"
-import * as dotenv from "dotenv"
 import crypto from "crypto"
 
-dotenv.config({path: __dirname+'./env'})
+// dotenv.config()
 export const getMessagesForUser = async (user: string): Promise<string[]> => {
     let db = await connect();
 
@@ -10,7 +9,7 @@ export const getMessagesForUser = async (user: string): Promise<string[]> => {
     //Just to avoid error
     const tempinitVector = crypto.randomBytes(16);
     let initVector = process.env.INIT_VECTOR||""
-    const initVect = (Buffer.from(initVector))||initVector
+    const initVect = (Buffer.from(initVector))||tempinitVector
     const alg = process.env.ALGORITHM||""
     const secKey = process.env.SECURITY_KEY||""
     const decipher = crypto.createDecipheriv(alg,secKey, alg, initVect)
@@ -37,17 +36,16 @@ export const getMessagesForUser = async (user: string): Promise<string[]> => {
 export const saveMessage = async (message: string, recipient: string) => {
     let db = await connect();
 
+    //Just to avoid error
     const tempinitVector = crypto.randomBytes(16);
-    const tempKey = crypto.randomBytes(32);
-    console.log(tempinitVector)
-    let initVector = process.env.INIT_VECTOR||"";
+    
+    const initVector = process.env.INIT_VECTOR||"";
     let sec_Key = process.env.SECURITY_KEY||"";
-    const initVect = (Buffer.from(initVector, "base64"))||tempinitVector;
-    const secKey = (Buffer.from(sec_Key,"base64"))||tempinitVector;
+    const initVect = (Buffer.from(initVector, "hex"))||tempinitVector;
+    const secKey = (Buffer.from(sec_Key,"hex"))||tempinitVector;
     const alg = process.env.ALGORITHM||"";
     
-    console.log(alg + " " + secKey+ " " +initVect)
-    const cipher = crypto.createCipheriv("aes-256-gcm",tempKey, tempinitVector);
+    const cipher = crypto.createCipheriv(alg,secKey, initVect);
     let encryptedMessage = cipher.update(message, "utf-8","hex");
     encryptedMessage += cipher.final("hex");
 

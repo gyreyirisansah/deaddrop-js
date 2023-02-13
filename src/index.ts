@@ -1,3 +1,5 @@
+import "dotenv/config"
+
 import { Command } from "commander";
 import { exit } from "process";
 import { noUsers } from "./db";
@@ -10,6 +12,14 @@ import { sendMessage } from "./send";
 import log4js from "log4js"
 
 const program = new Command();
+
+
+//Environment variables declarations
+
+// dotenv.config()
+
+// import * as dotenv from 'dotenv'
+// dotenv.config()
 
 
 //configuring log 4 js with two appenders, app logs all infos whiles errors are logged to the log_errors.txt 

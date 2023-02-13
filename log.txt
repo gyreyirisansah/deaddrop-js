@@ -12,3 +12,15 @@
 [2023-02-12T16:19:24.017] [ERROR] errors - READ: operation failed failed for user Paul Error: Error: User does not exist
 [2023-02-12T16:27:52.832] [ERROR] errors - READ: operation failed failed for user Paul Error: Error: User does not exist
 [2023-02-12T16:29:13.918] [ERROR] errors - READ: operation failed failed for user Paul Error: Error: User does not exist
+[2023-02-12T23:20:13.885] [INFO] app - Message sent successfully for user paul
+[2023-02-12T23:22:19.204] [INFO] app - Message sent successfully for user paul
+[2023-02-12T23:23:25.941] [INFO] app - Message sent successfully for user paul
+[2023-02-12T23:26:04.157] [INFO] app - Message sent successfully for user paul
+[2023-02-12T23:27:01.372] [INFO] app - Message sent successfully for user paul
+[2023-02-12T23:30:29.373] [INFO] app - Message sent successfully for user paul
+[2023-02-12T23:33:50.818] [INFO] app - Message sent successfully for user paul
+[2023-02-12T23:34:39.643] [INFO] app - Message sent successfully for user paul
+[2023-02-12T23:37:32.153] [INFO] app - Message sent successfully for user paul
+[2023-02-12T23:38:00.329] [INFO] app - Message sent successfully for user paul
+[2023-02-12T23:39:57.722] [INFO] app - Message sent successfully for user paul
+[2023-02-12T23:43:02.292] [INFO] app - Message sent successfully for user paul
