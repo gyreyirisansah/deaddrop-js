@@ -6,13 +6,6 @@ export const getMessagesForUser = async (user: string): Promise<string[]> => {
     let db = await connect();
 
     let messages: string[] = [];
-    //Just to avoid error
-    const tempinitVector = crypto.randomBytes(16);
-    let initVector = process.env.INIT_VECTOR||""
-    const initVect = (Buffer.from(initVector))||tempinitVector
-    const alg = process.env.ALGORITHM||""
-    const secKey = process.env.SECURITY_KEY||""
-    const decipher = crypto.createDecipheriv(alg,secKey, alg, initVect)
 
     await db.each(`
         SELECT data FROM Messages
@@ -25,8 +18,7 @@ export const getMessagesForUser = async (user: string): Promise<string[]> => {
         if (err) {
             throw new Error(err);
         }
-        let decryptedMessage = decipher.update(row.data,"hex","utf-8")
-        decryptedMessage += decipher.final("utf8")
+        const  decryptedMessage = decryptMessage(row.data)
         messages.push(decryptedMessage);
     });
 
@@ -35,20 +27,8 @@ export const getMessagesForUser = async (user: string): Promise<string[]> => {
 
 export const saveMessage = async (message: string, recipient: string) => {
     let db = await connect();
-
-    //Just to avoid error
-    const tempinitVector = crypto.randomBytes(16);
     
-    const initVector = process.env.INIT_VECTOR||"";
-    let sec_Key = process.env.SECURITY_KEY||"";
-    const initVect = (Buffer.from(initVector, "hex"))||tempinitVector;
-    const secKey = (Buffer.from(sec_Key,"hex"))||tempinitVector;
-    const alg = process.env.ALGORITHM||"";
-    
-    const cipher = crypto.createCipheriv(alg,secKey, initVect);
-    let encryptedMessage = cipher.update(message, "utf-8","hex");
-    encryptedMessage += cipher.final("hex");
-
+    const encryptedMessage = encryptMessage(message)
 
     await db.run(`
         INSERT INTO Messages 
@@ -61,4 +41,31 @@ export const saveMessage = async (message: string, recipient: string) => {
         ":user": recipient,
         ":message": encryptedMessage,
     });
+}
+
+const getSecretKey = (key:string) =>{
+    return crypto.scryptSync(key, "salt", 24);
+}
+
+const encryptMessage = (message:string) =>{
+    const initial_vector = crypto.randomBytes(16);
+    const cipher = crypto.createCipheriv(process.env.ALGORITHM||"", getSecretKey(process.env.SECURITY_KEY||""),initial_vector);
+    const encryptedMesage = cipher.update(message, "utf8", "hex");
+    const finalEncryptedMsg = [
+        encryptedMesage + cipher.final("hex"),
+      Buffer.from(initial_vector).toString("hex"),
+    ].join("|");
+    return finalEncryptedMsg
+}
+
+const decryptMessage = (encryptedMessage:string) =>{
+        const [encryptedMsg, initial_vector] = encryptedMessage.split("|");
+        if (!initial_vector) throw new Error("Initial Vector not found");
+        const decipher = crypto.createDecipheriv(
+            process.env.ALGORITHM||"",
+            getSecretKey(process.env.SECURITY_KEY||""),
+          Buffer.from(initial_vector, "hex")
+        );
+        return decipher.update(encryptedMsg, "hex", "utf8") + decipher.final("utf8");
+      
 }
