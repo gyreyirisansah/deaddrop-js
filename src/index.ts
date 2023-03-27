@@ -58,6 +58,7 @@ program
   .option("--new", "use the utility in new user mode")
   .option("--send", "use the utility in send mode")
   .option("--read", "use the utility in read mode")
+  .option("--from <name>", "specify your username")
   .option("--user <name>", "specify a user for verbs requiring a user target")
   .option("--to <name>", "specify the user to send a message to")
   .parse(process.argv);
@@ -91,11 +92,16 @@ if (options.new) {
     }
   });
 } else if (options.send) {
+  let sender = validateInputString(options.from)
+  
   let user = validateInputString(options.to);
-  if (user === "") {
+  if (sender === ""){
+    console.error("Please specify your username when running in send mode");
+  }
+  else if (user === "") {
     console.error("Please specify a to target when running in send mode");
   } else {
-    sendMessage(user);
+    sendMessage(user,sender);
   }
 } else if (options.read) {
   let user = validateInputString(options.user);

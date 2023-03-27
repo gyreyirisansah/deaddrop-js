@@ -2,3 +2,22 @@
 [2023-02-14T21:58:27.354] [ERROR] errors - SEND: sending message to user Sansah failed. Error: Destination user does not exist
 [2023-02-14T21:58:51.949] [ERROR] errors - READ: operation failed failed for user sansah Error: Error: User does not exist
 [2023-02-14T22:00:01.213] [ERROR] errors - READ: operation failed failed for user paul Error: Error: Unable to authenticate
+[2023-03-26T14:00:36.215] [ERROR] errors - SEND: sending message to user sansah failed. Error: Your username does not exist
+[2023-03-26T14:00:43.508] [ERROR] errors - SEND: sending message to user sansah failed. Error: Your username does not exist
+[2023-03-26T14:01:07.967] [ERROR] errors - SEND: sending message to user sansah failed. Error: Your username does not exist
+[2023-03-26T14:01:51.940] [ERROR] errors - SEND: sending message to user sansah failed. Error: Your username does not exist
+[2023-03-26T14:02:16.046] [ERROR] errors - SEND: sending message to user sansah failed. Error: Your username does not exist
+[2023-03-26T14:04:26.354] [ERROR] errors - SEND: sending message to user sansah failed. Error: Your username does not exist
+[2023-03-26T14:05:44.955] [ERROR] errors - SEND: sending message to user sansah failed. Error: Your username does not exist
+[2023-03-26T14:06:27.693] [ERROR] errors - SEND: sending message to user sansah failed. Error: Your username does not exist
+[2023-03-26T14:10:59.774] [ERROR] errors - SEND: sending message to user sansah failed. Error: Your username does not exist
+[2023-03-26T14:11:38.098] [ERROR] errors - SEND: sending message to user sansah failed. Error: Your username does not exist
+[2023-03-26T21:26:47.137] [ERROR] errors - READ: operation failed failed for user sansah Error: Error: Unable to authenticate
+[2023-03-26T21:28:59.916] [ERROR] errors - The integrity of message sent by paul could not be verified!
+[2023-03-26T22:09:13.944] [ERROR] errors - The integrity of message sent by paul could not be verified!
+[2023-03-26T22:10:11.630] [ERROR] errors - The integrity of message sent by paul could not be verified!
+[2023-03-26T23:04:50.492] [ERROR] errors - SEND: sending message to user sansah failed. Error: Unable to authenticate
+[2023-03-26T23:32:37.697] [ERROR] errors - The integrity of message sent by paul could not be verified!
+[2023-03-26T23:32:37.730] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-03-26T23:40:01.237] [ERROR] errors - The integrity of message sent by paul could not be verified!
+[2023-03-26T23:40:01.269] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.

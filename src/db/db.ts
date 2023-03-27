@@ -12,9 +12,19 @@ CREATE TABLE Users (
 
 CREATE TABLE Messages (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    sender INTEGER NOT NULL REFERENCES Users(id),
     recipient INTEGER NOT NULL REFERENCES Users(id),
-    data TEXT NOT NULL
+    data TEXT NOT NULL,
+    mac TEXT NOT NULL
 );
+
+CREATE TRIGGER mac_forbid_update BEFORE UPDATE ON Messages
+BEGIN
+SELECT CASE 
+WHEN (OLD.mac <> NEW.mac)
+    THEN raise(abort,"MAC cannot be modified")
+END;
+END;
 `
 
 export const connect = async (): Promise<Database<sqlite3.Database, sqlite3.Statement>> => {
