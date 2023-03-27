@@ -35,9 +35,8 @@ I used the crypto library for the encryption task. I modified the messages files
 
 ### Database Modification
 <p align="justify">
-    The database was modified to accommodate the new changes to our system. Two fields were added to the Messages table, sender and mac fields. They are the mac field which stores the mac generated for each message, and the sender, to hold the message's sender.     
-
-    A Before Updated was created to make the mac field uneditable and read-only to check if the updated value is different from the original value. It raises an error and aborts the operation. The error message is intended to be logged to a file; however, this feature has yet to be implemented because it requires writing an error logging callback function with the C programming language I am unfamiliar with. 
+    The database was modified to accommodate the new changes to our system. Two fields were added to the Messages table, sender and mac fields. They are the mac field which stores the mac generated for each message, and the sender, to hold the message's sender.       
+    A Before Updated Trigger was created to make the mac field uneditable and read-only to check if the updated value is different from the original value. It raises an error and aborts the operation. The error message is intended to be logged to a file; however, this feature has yet to be implemented because it requires writing an error logging callback function with the C programming language I am unfamiliar with. 
 </p>
 
 ### Mac and Sender Authentication Implementation 
